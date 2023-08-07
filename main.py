@@ -73,7 +73,10 @@ def get_config():
 def main():
     args = get_config()
     device = check_device()
+    ## Hint: adj matrix is for 1085 stations
     _, _, adj_mat = load_graph_data(args.graph_pkl)
+
+    print(adj_mat.shape)
 
     model = AirFormer(dropout=args.dropout,
                       spatial_flag=args.spatial_flag,
