@@ -106,8 +106,8 @@ class AirFormer(BaseModel):
                  dropout=0.3,  # dropout rate
                  spatial_flag=True,  # whether to use DS-MSA
                  stochastic_flag=True,  # whether to use latent vairables
-                 hidden_channels=32,  # hidden dimension
-                 end_channels=512,  # the decoder dimension
+                 hidden_channels=8,  # def: 32 hidden dimension
+                 end_channels=64,  #def:512  the decoder dimension
                  blocks=4,  # the number of stacked AirFormer blocks
                  mlp_expansion=2,  # the mlp expansion rate in transformers
                  num_heads=2,  # the number of heads
