@@ -133,6 +133,8 @@ class AirFormer(BaseModel):
                                     out_channels=hidden_channels,
                                     kernel_size=(1, 1))
 
+        print('chk:input dimension to conv:',self.input_dim)
+
         for b in range(blocks):
             window_size = self.seq_len // 2 ** (blocks - b - 1)
             self.t_modules.append(CT_MSA(hidden_channels,
@@ -198,14 +200,18 @@ class AirFormer(BaseModel):
         '''
         path_assignment = 'data/local_partition/' + \
             dartboard_map[dartboard] + '/assignment.npy'
+        
+        print('dartboard path assignment:self.assignment',path_assignment)
+
         path_mask = 'data/local_partition/' + \
             dartboard_map[dartboard] + '/mask.npy'
-        print(path_assignment)
+        print(' path_mask:self.mask:',path_mask)
+      
         self.assignment = torch.from_numpy(
             np.load(path_assignment)).float().to(self.device)
         self.mask = torch.from_numpy(
             np.load(path_mask)).bool().to(self.device)
-
+        
     def forward(self, inputs, supports=None):
         '''
         inputs: the historical data
