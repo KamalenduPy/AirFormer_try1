@@ -223,11 +223,11 @@ class AirFormer(BaseModel):
         print('x_embed shape in forward method in airfomer module:',x_embed.shape())
       
         x = torch.cat((inputs[..., :11], x_embed, inputs[..., 15:]), -1)
-        print('dimension of x that goes in start_conv in Airformer forward:',list(x.size()))
+        print('dimension of x that goes in start_conv in Airformer forward:',list(x.shape()))
       
         x = x.permute(0, 3, 2, 1)  # [b, c, n, t]
         x = self.start_conv(x)
-        print('Airformer start_conv output that flows in deterministic step shape',list(x.size()))
+        print('Airformer start_conv output that flows in deterministic step shape',list(x.shape()))
         
         
         d = []  # deterministic states
@@ -240,7 +240,7 @@ class AirFormer(BaseModel):
             x = self.t_modules[i](x)  # [b, c, n, t]
 
             x = self.bn[i](x)
-            print('shape of o/p of deterministic stage in each block',list(x.size()))
+            print('shape of o/p of deterministic stage in each block',list(x.shape()))
             d.append(x)
 
         d = torch.stack(d)  # [num_blocks, b, c, n, t]
