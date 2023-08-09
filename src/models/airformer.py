@@ -218,16 +218,16 @@ class AirFormer(BaseModel):
         supports: adjacency matrix (actually our method doesn't use it)
                 Including adj here is for consistency with GNN-based methods
         '''
-        print('input to forward method in airfomer module :',inputs.shape)
+        print('input to forward method in airfomer module :',inputs.shape())
         x_embed = self.embedding_air(inputs[..., 11:15].long())
-        print('x_embed shape in forward method in airfomer module:',x_embed)
+        print('x_embed shape in forward method in airfomer module:',x_embed.shape())
       
         x = torch.cat((inputs[..., :11], x_embed, inputs[..., 15:]), -1)
-        print('dimension of x in Airformer forward',list(x.size()))
+        print('dimension of x that goes in start_conv in Airformer forward:',list(x.size()))
       
         x = x.permute(0, 3, 2, 1)  # [b, c, n, t]
         x = self.start_conv(x)
-        print('Airformer start conv output shape',list(x.size()))
+        print('Airformer start_conv output that flows in deterministic step shape',list(x.size()))
         
         
         d = []  # deterministic states
