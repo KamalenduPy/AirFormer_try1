@@ -37,6 +37,8 @@ class LatentLayer(nn.Module):
     def forward(self, x):
         # x: [b, c, n, t]
         h = self.enc_in(x)
+        print('shape of x in latent layers',x.shape)
+        print('latent layer shape of H',h.shape)
         for i in range(self.num_layers):
             h = self.enc_hidden[i](h)
         mu = torch.minimum(self.enc_out_1(h), torch.ones_like(h)*10)
@@ -461,6 +463,7 @@ class CT_MSA(nn.Module):
     def forward(self, x):
         # x: [b, c, n, t]
         b, c, n, t = x.shape
+        print('input to CTMSA b,c,n,t',x.shape)
         x = x.permute(0, 2, 3, 1).reshape(b*n, t, c)  # [b*n, t, c]
         x = x + self.pos_embedding  # [b*n, t, c]
         for attn, ff in self.layers:
