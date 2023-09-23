@@ -187,6 +187,7 @@ class BaseTrainer():
         pred, label = self._inverse_transform([pred, label])
 
         loss = self.loss_fn(pred, label, 0.0)
+        print('src/base/trainer.py/190 calculated loss:',loss)
         loss.backward()
         torch.nn.utils.clip_grad_norm_(self.model.parameters(),
                                        max_norm=self._clip_grad_value)
