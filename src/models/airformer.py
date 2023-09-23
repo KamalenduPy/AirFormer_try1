@@ -235,7 +235,9 @@ class AirFormer(BaseModel):
         d = []  # deterministic states
         for i in range(self.blocks):
             if self.spatial_flag:
-                x = self.s_modules[i](x)
+                print('!!!!!!!!! Important DS_MSA bypassed  !!!!!!!!!!')
+                x=x
+                # x = self.s_modules[i](x)
             else:
                 x = self.residual_convs[i](x)
 
