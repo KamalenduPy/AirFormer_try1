@@ -57,7 +57,7 @@ class Trainer(BaseTrainer):
             supports = self.supports
         self.optimizer.zero_grad()
         pred, X_rec, kl_loss = self.model(X, supports)
-        pred, label = self._inverse_transform([pred, label])
+        #K pred, label = self._inverse_transform([pred, label])
 
         pred_loss = self.loss_fn(pred, label, 0.0)
         # negative elbo
@@ -164,5 +164,5 @@ class Trainer(BaseTrainer):
 
     def test_batch(self, X, label):
         pred, _, _ = self.model(X, self.supports)
-        pred, label = self._inverse_transform([pred, label])
+        #K pred, label = self._inverse_transform([pred, label])
         return pred, label
