@@ -9,7 +9,7 @@ from src.utils import graph_algo
 
 
 class Trainer(BaseTrainer):
-    def __init__(self, **args):
+    def __init__(self,param_vals, **args):
         super(Trainer, self).__init__(**args)
         self._optimizer = Adam(self.model.parameters(), self._base_lr)
         self._supports = self._calculate_supports(
@@ -19,6 +19,7 @@ class Trainer(BaseTrainer):
                                          gamma=self._lr_decay_ratio)
         self.rec_mae = nn.L1Loss()
         self.alpha = 1
+        self.param_vals=param_vals
 
     def _calculate_supports(self, adj_mat, filter_type):
         # For GNNs, not for AirFormer
@@ -77,9 +78,9 @@ class Trainer(BaseTrainer):
         message='start training !!! with parameters: \
         seq_len:{}, horizon:{}, max_epochs:{}, patience:{}, \
         dropout:{}, n_hidden:{}, num_heads: {}, stochastic_flag:{}, base_lr: {},lr_decay_ratio: {}'.format(
-            args.seq_len, args.horizon, args.max_epochs, args.patience, args.dropout, args.n_hidden, args.num_heads,
-            args.stochastic_flag, args.base_lr, args.lr_decay_ratio)
-        
+            self.param_vals.seq_len, self.param_vals.horizon, self.param_vals.max_epochs, self.param_vals.patience, self.param_vals.dropout, self.param_vals.n_hidden, self.param_vals.num_heads,
+            self.param_vals.stochastic_flag, self.param_vals.base_lr, self.param_vals.lr_decay_ratio)
+
         self.logger.info(message)
 
         # training phase
