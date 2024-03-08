@@ -74,7 +74,13 @@ class Trainer(BaseTrainer):
         '''
         rewrite the train process due to the stochastic stage
         '''
-        self.logger.info("start training !!!!!")
+        message='start training !!! with parameters: \
+        seq_len:{}, horizon:{}, max_epochs:{}, patience:{}, \
+        dropout:{}, n_hidden:{}, num_heads: {}, stochastic_flag:{}, base_lr: {},lr_decay_ratio: {}'.format(
+            args.seq_len, args.horizon, args.max_epochs, args.patience, args.dropout, args.n_hidden, args.num_heads,
+            args.stochastic_flag, args.base_lr, args.lr_decay_ratio)
+        
+        self.logger.info(message)
 
         # training phase
         iter = 0
