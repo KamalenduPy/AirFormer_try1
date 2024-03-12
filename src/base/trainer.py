@@ -184,7 +184,7 @@ class BaseTrainer():
             supports = self.supports
         self.optimizer.zero_grad()
         pred = self.model(X, supports)
-        #K pred, label = self._inverse_transform([pred, label])
+        pred, label = self._inverse_transform([pred, label]) #K was commented out
 
         loss = self.loss_fn(pred, label, 0.0)
         print('src/base/trainer.py/190 calculated loss:',loss)
@@ -292,7 +292,7 @@ class BaseTrainer():
         the test process of a batch
         '''
         pred = self.model(X, self.supports)
-        #K pred, label = self._inverse_transform([pred, label])
+        pred, label = self._inverse_transform([pred, label]) #K was commented out
         return pred, label
 
     def test(self, epoch, mode='test'):
