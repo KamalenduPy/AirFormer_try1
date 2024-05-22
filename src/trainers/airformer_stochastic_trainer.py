@@ -44,7 +44,7 @@ class Trainer(BaseTrainer):
         else:
             error = 0
             assert error, "adj type not defined"
-        supports = [torch.tensor(i).cuda() for i in supports]
+        #supports = [torch.tensor(i).cuda() for i in supports]
         return supports
 
     def train_batch(self, X, label, iter):
