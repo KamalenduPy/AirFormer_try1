@@ -44,7 +44,7 @@ class Trainer(BaseTrainer):
         else:
             error = 0
             assert error, "adj type not defined"
-        #supports = [torch.tensor(i).cuda() for i in supports]
+        #K supports = [torch.tensor(i).cuda() for i in supports]
         return supports
 
     def train_batch(self, X, label, iter):
@@ -58,7 +58,7 @@ class Trainer(BaseTrainer):
             supports = self.supports
         self.optimizer.zero_grad()
         pred, X_rec, kl_loss = self.model(X, supports)
-        #K pred, label = self._inverse_transform([pred, label])
+        pred, label = self._inverse_transform([pred, label])
 
         pred_loss = self.loss_fn(pred, label, 0.0)
         # negative elbo
