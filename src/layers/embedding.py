@@ -6,7 +6,7 @@ class SeasonEmbedding(nn.Module):
     Embed catagorical variables.
     '''
     def __init__(self):
-        super(AirEmbedding, self).__init__()
+        super(SeasonEmbedding, self).__init__()
         self.embed_hour=nn.Embedding(26,5)
         self.embed_week=nn.Embedding(11,3)
         self.embed_month=nn.Embedding(18,3)
