@@ -8,8 +8,10 @@ class SeasonEmbedding(nn.Module):
     def __init__(self):
         super(SeasonEmbedding, self).__init__()
         self.embed_hour=nn.Embedding(26,5)
-        self.embed_week=nn.Embedding(8,3)
-        self.embed_month=nn.Embedding(13,3)
+        #self.embed_week=nn.Embedding(8,3)
+        self.embed_week=nn.Embedding(11,3)
+        self.embed_month=nn.Embedding(18,3)
+        # self.embed_month=nn.Embedding(13,3)
         self.embed_dom=nn.Embedding(32,3) # a typo here but doesn't affect the results. this layer is actually for embedding 24 hours.
         self.embed_season=nn.Embedding(7,5) # a typo here but doesn't affect the results. this layer is actually for embedding 7 days.
 
