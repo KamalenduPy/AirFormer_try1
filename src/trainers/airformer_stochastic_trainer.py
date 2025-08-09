@@ -105,6 +105,7 @@ class Trainer(BaseTrainer):
                 X, label = self._check_device([X, label])
                 loss, pred_loss, rec_loss, kl_loss = self.train_batch(
                     X, label, iter)
+                print('each iter of backprop,loss, pred_loss, rec_loss, kl_loss:',loss.shape, pred_loss.shape, rec_loss.shape, kl_loss.shape)
                 train_losses.append(loss)
                 pred_losses.append(pred_loss)
                 rec_losses.append(rec_loss)
