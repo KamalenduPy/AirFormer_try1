@@ -39,12 +39,12 @@ def masked_mae(preds, labels, null_val = np.nan, mask = None):
     mask = mask.float()
     mask /= torch.mean((mask))
     mask = torch.where(torch.isnan(mask), torch.zeros_like(mask), mask)
-    print('utils/metrics.py/42 loss function mask shape', mask.shape)
+    # print('utils/metrics.py/42 loss function mask shape', mask.shape)
     
     loss = torch.abs(preds-labels)
     loss = loss * mask
     loss = torch.where(torch.isnan(loss), torch.zeros_like(loss), loss)
-    print('utils/metrics.py/47 loss function masked_loss shape', mask.shape)
+    # print('utils/metrics.py/47 loss function masked_loss shape', mask.shape)
     return torch.mean(loss)
 
 
